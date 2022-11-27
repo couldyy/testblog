@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'responsive.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<style>
+.card-img {
+    width: 300px;
+    height: 250px;
+}
+
+.wrapper footer.footer {
+    height: 130px;
+}
+
+.wrapper footer .footer-bg {
+    background: #000 none repeat scroll 0 0;
+    height: 130px;
+    overflow: hidden;
+}
+
+.wrapper footer.footer .footer-menu {
+    margin: 0
+}
+
+.wrapper footer.footer .footer-menu ul {
+    line-height: 130px;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper footer.footer .footer-menu ul li {
+    display: inline;
+    list-style: outside none none;
+    margin: 0;
+    padding: 30px 0px;
+}
+
+.wrapper footer.footer .footer-menu ul li a {
+    color: #fff;
+    font-family: "Raleway", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 70px;
+    margin-left: 40px;
+    padding: 26px 10px 26px 0;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.wrapper footer.footer .footer-icon p {
+    float: right;
+    line-height: 130px;
+}
+
+.wrapper footer.footer .footer-icon p i {
+    color: #fff;
+    font-size: 18px;
+    margin-right: 30px;
+    padding: 10px;
+}
+</style>
+
+<body>
+    <div class="wrapper">
+        {% block header %}
+        {% endblock %}
+
+        {% block content %}
+        {% load cache %}
+        {% cache 60 pagination %}
+        {% block pagination %}
+        {% endblock %}
+        {% endcache %}
+        {% endblock %}
+
+        {% load cache %}
+        {% cache 120 footer %}
+        {% block footer %}
+        {% endblock %}
+        {% endcache %}
+    </div>
+    <!--<script src="{% static 'js/jquery-3.1.1.min.js' %}"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/active.js' %}"></script>
+    <script>
+        $(document).ready(() => {
+    let reply = $('.fa-reply');
+    let showcomsbtn = $('.showcoms')
+    let like = $('.fa-thumbs-up');
+
+    reply.on('click', (e) => {
+        $(e.target).parent().parent().next().fadeToggle()
+    })
+
+    showcomsbtn.on('click', (e) => {
+        $(e.target).parent().parent().parent().parent().next('.repliess').fadeToggle()
+    })
+
+
+});
+    </script>
+    <!--<script src="{% static 'js/b.js' %}"></script> -->
+</body>
+
+</html>
